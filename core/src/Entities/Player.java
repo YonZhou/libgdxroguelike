@@ -16,6 +16,8 @@ public class Player extends Entity{
 
     public Player(int x, int y, Sprite s) {
         super(x, y, s);
+        this.width = BASE_WIDTH;
+        this.height = BASE_HEIGHT;
     }
 
     public void setMap(gameMap map) {
@@ -39,7 +41,8 @@ public class Player extends Entity{
         if(px < 0 || py < 0){
             return true;
         }
-        if(px + width > (currentMap.getWidth() )* Tiles.TILE_SIZE || py + height> (currentMap.getHeight()) * Tiles.TILE_SIZE) {
+
+        if(px + width >= (currentMap.getWidth() )* Tiles.TILE_SIZE || py + height>= (currentMap.getHeight()) * Tiles.TILE_SIZE) {
             return true;
         }
         if(currentMap.getTilePixels(px, py).isBlocked()){
