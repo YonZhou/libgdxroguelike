@@ -2,8 +2,8 @@ package Entities;
 
 import Tiles.*;
 import Tiles.gameMap;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import mainGame.World;
 
 public class Player extends Entity{
     public static int BASE_HEIGHT = 100;
@@ -12,12 +12,19 @@ public class Player extends Entity{
     private int gridY;
     private int width;
     private int height;
+    private Animation movingUpAnimation;
+    private Animation movingDownAnimation;
+    private Animation movingRightAnimation;
+    private Animation movingLeftAnimation;
+    private State currentState;
     private gameMap currentMap;
 
     public Player(int x, int y, Sprite s) {
         super(x, y, s);
         this.width = BASE_WIDTH;
         this.height = BASE_HEIGHT;
+        this.currentState = State.STANDING;
+        //this.movingUpAnimation = new Animation();
     }
 
     public void setMap(gameMap map) {
