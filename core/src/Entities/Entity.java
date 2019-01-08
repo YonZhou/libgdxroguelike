@@ -8,6 +8,7 @@ public class Entity {
 
     protected Vector2 position;
     private boolean movingUp, movingDown, movingRight, movingLeft;
+    protected State currentState;
     private int speed = 10;
 
     public Entity(int x, int y, Sprite s){
@@ -31,6 +32,8 @@ public class Entity {
     }
 
     public void updateMove(){
+        updateDirection();
+        System.out.println(currentState);
         if(movingDown)
             move(0, -speed);
         if(movingUp)
@@ -39,6 +42,42 @@ public class Entity {
             move(-speed, 0);
         if(movingRight)
             move(speed,0);
+
+    }
+    public void changeDirection(State s) {
+        this.currentState = s;
+    }
+
+    public void updateDirection() {
+        if(movingUp && !movingRight && !movingDown && !movingLeft) {
+            changeDirection(State.WALKING_UP);
+        }
+        else if(!movingUp && movingRight && !movingDown && !movingLeft) {
+            changeDirection(State.WALKING_RIGHT);
+        }
+        else if(!movingUp && !movingRight && movingDown && !movingLeft) {
+            changeDirection(State.WALKING_DOWN);
+        }
+        else if(!movingUp && !movingRight && !movingDown && movingLeft) {
+            changeDirection(State.WALKING_LEFT);
+        }
+        // omni
+        else if(movingUp && !movingRight && !movingDown && movingLeft) {
+            changeDirection(State.WALKING_UP_LEFT);
+        }
+        else if(movingUp && movingRight && !movingDown && !movingLeft) {
+            changeDirection(State.WALKING_UP_RIGHT);
+        }
+        else if(!movingUp && !movingRight && movingDown && movingLeft) {
+            changeDirection(State.WALKING_DOWN_LEFT);
+        }
+        else if(!movingUp && movingRight && movingDown && !movingLeft) {
+            changeDirection(State.WALKING_DOWN_RIGHT);
+        }
+
+//        else {
+//            changeDirection(State.STANDING);
+//        }
 
     }
 

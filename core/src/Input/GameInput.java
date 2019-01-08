@@ -13,7 +13,7 @@ public class GameInput implements InputProcessor {
     public boolean keyDown(int keycode) {
 
         switch(keycode){
-            case Keys.W : mainEntity.setMovingUp(true);;
+            case Keys.W : mainEntity.setMovingUp(true);
             return true;
             case Keys.S : mainEntity.setMovingDown(true);
             return true;

@@ -16,7 +16,6 @@ public class Player extends Entity{
     private Animation movingDownAnimation;
     private Animation movingRightAnimation;
     private Animation movingLeftAnimation;
-    private State currentState;
     private gameMap currentMap;
 
     public Player(int x, int y, Sprite s) {
@@ -37,6 +36,7 @@ public class Player extends Entity{
             super.move(x, y);
         }
     }
+
 
     public void updatePlayerLocation() {
 
