@@ -49,20 +49,8 @@ public class Entity {
     }
 
     public void updateDirection() {
-        if(movingUp && !movingRight && !movingDown && !movingLeft) {
-            changeDirection(State.WALKING_UP);
-        }
-        else if(!movingUp && movingRight && !movingDown && !movingLeft) {
-            changeDirection(State.WALKING_RIGHT);
-        }
-        else if(!movingUp && !movingRight && movingDown && !movingLeft) {
-            changeDirection(State.WALKING_DOWN);
-        }
-        else if(!movingUp && !movingRight && !movingDown && movingLeft) {
-            changeDirection(State.WALKING_LEFT);
-        }
         // omni
-        else if(movingUp && !movingRight && !movingDown && movingLeft) {
+        if(movingUp && !movingRight && !movingDown && movingLeft) {
             changeDirection(State.WALKING_UP_LEFT);
         }
         else if(movingUp && movingRight && !movingDown && !movingLeft) {
@@ -73,6 +61,18 @@ public class Entity {
         }
         else if(!movingUp && movingRight && movingDown && !movingLeft) {
             changeDirection(State.WALKING_DOWN_RIGHT);
+        }
+        else if(movingUp && !movingDown) {
+            changeDirection(State.WALKING_UP);
+        }
+        else if(movingRight && !movingLeft) {
+            changeDirection(State.WALKING_RIGHT);
+        }
+        else if(!movingUp && movingDown) {
+            changeDirection(State.WALKING_DOWN);
+        }
+        else if(!movingRight && movingLeft) {
+            changeDirection(State.WALKING_LEFT);
         }
 
 //        else {
