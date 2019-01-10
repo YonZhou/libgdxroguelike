@@ -1,5 +1,6 @@
 package Screens;
 
+import Animations.PlayerAnimations;
 import Entities.Entity;
 import Input.GameInput;
 import Tiles.BasicMap;
@@ -30,10 +31,14 @@ public class GameScreen extends AbstractScreen{
     private World world;
     private mainGUI gui;
     private GameInput gameInput;
+    private float deltaTime;
+    private PlayerAnimations test;
 
 
     public GameScreen(Game g){
         super(g);
+        deltaTime = 0;
+        this.test = new PlayerAnimations();
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -76,12 +81,13 @@ public class GameScreen extends AbstractScreen{
 
     @Override
     public void render(float delta){
+        deltaTime += Gdx.graphics.getDeltaTime();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         playerEntity.updateMove();
 
-        updateCamera(playerSprite);
+        updateCamera(playerEntity);
         currentMap.render(cam);
 
         gui.sBatch.setProjectionMatrix(gui.stage.getCamera().combined);
@@ -90,13 +96,18 @@ public class GameScreen extends AbstractScreen{
 
         sBatch.setProjectionMatrix(cam.combined);
         sBatch.begin();
-        playerSprite.draw(sBatch);
+        drawPlayer();
+        sBatch.draw(test.getWalking_down_animation().getKeyFrame(deltaTime,true),0,0);
         sBatch.end();
 
     }
 
-    private void updateCamera(Sprite s){
-        cam.position.set(s.getX(), s.getY(), 0);
+    private void drawPlayer() {
+        playerSprite.draw(sBatch);
+    }
+
+    private void updateCamera(Entity e){
+        cam.position.set(e.getPosition().x, e.getPosition().y, 0);
         cam.update();
     }
 

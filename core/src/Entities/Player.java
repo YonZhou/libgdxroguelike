@@ -1,13 +1,18 @@
 package Entities;
 
+import Animations.PlayerAnimations;
 import Tiles.*;
 import Tiles.gameMap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Player extends Entity{
     public static int BASE_HEIGHT = 100;
     public static int BASE_WIDTH = 100;
+    public static Texture Character = new Texture("stella_walk.png");
+    private PlayerAnimations animations;
     private int gridX;
     private int gridY;
     private int width;
@@ -23,7 +28,8 @@ public class Player extends Entity{
         this.width = BASE_WIDTH;
         this.height = BASE_HEIGHT;
         this.currentState = State.STANDING;
-        //this.movingUpAnimation = new Animation();
+        TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
+        this.animations = new PlayerAnimations();
     }
 
     public void setMap(gameMap map) {
