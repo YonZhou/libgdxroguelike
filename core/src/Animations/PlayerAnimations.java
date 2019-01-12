@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class PlayerAnimations {
     private Texture frames;
+    public static float FRAME_DURATION = 1f/4f;
     public static int FRAMES_WIDTH = 4;
     public static int FRAMES_HEIGHT = 8;
     private Animation<TextureRegion> standing_animation;
@@ -19,14 +20,47 @@ public class PlayerAnimations {
         this.frames = Player.Character;
         TextureRegion[][] splitRegion = TextureRegion.split(frames, frames.getWidth()/4, frames.getHeight()/8);
 
+        // initialize walking down animation
         TextureRegion[] walking_down_frames = new TextureRegion[FRAMES_WIDTH];
         for(int j = 0; j < FRAMES_WIDTH; j++){
             walking_down_frames[j] = splitRegion[0][j];
         }
-        this.walking_down_animation = new Animation(1f/2f, walking_down_frames);
+        this.walking_down_animation = new Animation(FRAME_DURATION, walking_down_frames);
+
+        //initialize walking left animation
+        TextureRegion[] walking_left_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_left_frames[j] = splitRegion[1][j];
+        }
+        this.walking_left_animation = new Animation(FRAME_DURATION, walking_left_frames);
+
+        //initialize walking right animation
+        TextureRegion[] walking_right_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_right_frames[j] = splitRegion[2][j];
+        }
+        this.walking_right_animation = new Animation(FRAME_DURATION, walking_right_frames);
+
+        // initialize walking up animation
+        TextureRegion[] walking_up_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_up_frames[j] = splitRegion[3][j];
+        }
+        this.walking_up_animation = new Animation(FRAME_DURATION, walking_up_frames);
     }
 
     public Animation<TextureRegion> getWalking_down_animation(){
         return this.walking_down_animation;
+    }
+    public Animation<TextureRegion> getWalking_up_animation() {
+        return walking_up_animation;
+    }
+
+    public Animation<TextureRegion> getWalking_left_animation() {
+        return walking_left_animation;
+    }
+
+    public Animation<TextureRegion> getWalking_right_animation() {
+        return walking_right_animation;
     }
 }

@@ -102,6 +102,8 @@ public class GameScreen extends AbstractScreen{
 
     private void drawPlayer() {
         Animation<TextureRegion> a = playerEntity.getCurrentAnimation();
+        assert(a.getKeyFrame(deltaTime, true) != null);
+        System.out.println(a);
         sBatch.draw(a.getKeyFrame(deltaTime, true), playerEntity.getX(), playerEntity.getY(), playerEntity.getWidth(), playerEntity.getHeight());
     }
 

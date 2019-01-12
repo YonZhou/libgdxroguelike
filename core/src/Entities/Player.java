@@ -30,9 +30,17 @@ public class Player extends Entity{
 
     public Animation<TextureRegion> getCurrentAnimation() {
         if(this.currentState == State.WALKING_DOWN)
-        return this.animations.getWalking_down_animation();
-        else
             return this.animations.getWalking_down_animation();
+        if(this.currentState == State.WALKING_LEFT)
+            return this.animations.getWalking_left_animation();
+        if(this.currentState == State.WALKING_RIGHT)
+            return this.animations.getWalking_right_animation();
+        if(this.currentState == State.WALKING_UP)
+            return this.animations.getWalking_up_animation();
+        else{
+            System.out.println("else invoked");
+            return this.animations.getWalking_down_animation();
+        }
     }
 
     public void setMap(gameMap map) {
