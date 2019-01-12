@@ -15,10 +15,19 @@ public class PlayerAnimations {
     private Animation<TextureRegion> walking_down_animation;
     private Animation<TextureRegion> walking_left_animation;
     private Animation<TextureRegion> walking_right_animation;
+    private Animation<TextureRegion> idle_up_animation;
+    private Animation<TextureRegion> idle_down_animation;
+    private Animation<TextureRegion> idle_left_animation;
+    private Animation<TextureRegion> idle_right_animation;
+
 
     public PlayerAnimations() {
         this.frames = Player.Character;
         TextureRegion[][] splitRegion = TextureRegion.split(frames, frames.getWidth()/4, frames.getHeight()/8);
+        this.idle_down_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[0][0]);
+        this.idle_left_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[1][0]);
+        this.idle_right_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[2][0]);
+        this.idle_up_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[3][0]);
 
         // initialize walking down animation
         TextureRegion[] walking_down_frames = new TextureRegion[FRAMES_WIDTH];
@@ -62,5 +71,21 @@ public class PlayerAnimations {
 
     public Animation<TextureRegion> getWalking_right_animation() {
         return walking_right_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_up_animation() {
+        return idle_up_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_down_animation() {
+        return idle_down_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_left_animation() {
+        return idle_left_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_right_animation() {
+        return idle_right_animation;
     }
 }

@@ -37,6 +37,18 @@ public class Player extends Entity{
             return this.animations.getWalking_right_animation();
         if(this.currentState == State.WALKING_UP)
             return this.animations.getWalking_up_animation();
+        if(this.currentState == State.DOWN_IDLE){
+            return this.animations.getIdle_down_animation();
+        }
+        if(this.currentState == State.LEFT_IDLE){
+            return this.animations.getIdle_left_animation();
+        }
+        if(this.currentState == State.RIGHT_IDLE){
+            return this.animations.getIdle_right_animation();
+        }
+        if(this.currentState == State.UP_IDLE){
+            return this.animations.getIdle_up_animation();
+        }
         else{
             System.out.println("else invoked");
             return this.animations.getWalking_down_animation();
