@@ -15,6 +15,10 @@ public class PlayerAnimations {
     private Animation<TextureRegion> walking_down_animation;
     private Animation<TextureRegion> walking_left_animation;
     private Animation<TextureRegion> walking_right_animation;
+    private Animation<TextureRegion> walking_up_left_animation;
+    private Animation<TextureRegion> walking_up_right_animation;
+    private Animation<TextureRegion> walking_down_left_animation;
+    private Animation<TextureRegion> walking_down_right_animation;
     private Animation<TextureRegion> idle_up_animation;
     private Animation<TextureRegion> idle_down_animation;
     private Animation<TextureRegion> idle_left_animation;
@@ -56,6 +60,35 @@ public class PlayerAnimations {
             walking_up_frames[j] = splitRegion[3][j];
         }
         this.walking_up_animation = new Animation(FRAME_DURATION, walking_up_frames);
+
+        //initialize walking down right animation
+        TextureRegion[] walking_down_right_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_down_right_frames[j] = splitRegion[4][j];
+        }
+        this.walking_down_right_animation = new Animation(FRAME_DURATION, walking_down_right_frames);
+
+        //initialize walking down left animation
+        TextureRegion[] walking_down_left_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_down_left_frames[j] = splitRegion[5][j];
+        }
+        this.walking_down_left_animation = new Animation(FRAME_DURATION, walking_down_left_frames);
+
+        //initialize walking up left animation
+        TextureRegion[] walking_up_left_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_up_left_frames[j] = splitRegion[6][j];
+        }
+        this.walking_up_left_animation = new Animation(FRAME_DURATION, walking_up_left_frames);
+
+        //initialize walking up right animation
+        TextureRegion[] walking_up_right_frames = new TextureRegion[FRAMES_WIDTH];
+        for(int j = 0; j < FRAMES_WIDTH; j++){
+            walking_up_right_frames[j] = splitRegion[7][j];
+        }
+        this.walking_up_right_animation = new Animation(FRAME_DURATION, walking_up_right_frames);
+
     }
 
     public Animation<TextureRegion> getWalking_down_animation(){
@@ -88,4 +121,22 @@ public class PlayerAnimations {
     public Animation<TextureRegion> getIdle_right_animation() {
         return idle_right_animation;
     }
+
+
+    public Animation<TextureRegion> getWalking_up_left_animation() {
+        return walking_up_left_animation;
+    }
+
+    public Animation<TextureRegion> getWalking_up_right_animation() {
+        return walking_up_right_animation;
+    }
+
+    public Animation<TextureRegion> getWalking_down_left_animation() {
+        return walking_down_left_animation;
+    }
+
+    public Animation<TextureRegion> getWalking_down_right_animation() {
+        return walking_down_right_animation;
+    }
+
 }
