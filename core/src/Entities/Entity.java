@@ -11,10 +11,15 @@ public class Entity {
     protected State currentState;
     private int speed = 10;
 
+    public Entity(int x, int y){
+        this.position = new Vector2(x,y);
+    }
     public Entity(int x, int y, Sprite s){
         this.position = new Vector2(x,y);
         this.s = s;
     }
+
+    public State getCurrentState() { return this.currentState; }
 
     public void setSprite(Sprite s){
         this.s = s;
@@ -22,7 +27,7 @@ public class Entity {
 
     public void move(int x, int y){
         this.position.set(this.position.x + x, this.position.y + y);
-        moveSprite(x, y);
+        //moveSprite(x, y);
     }
 
     public Sprite getSprite(){ return this.s; }
@@ -74,6 +79,26 @@ public class Entity {
         else if(!movingRight && movingLeft) {
             changeDirection(State.WALKING_LEFT);
         }
+        else if(!movingUp && !movingRight && !movingDown && !movingLeft && this.currentState.isType(State.State_Type.MOVING)){
+            State previousDirection = this.currentState;
+            switch(previousDirection){
+                case WALKING_UP:
+                    changeDirection(State.UP_IDLE);
+                    break;
+                case WALKING_DOWN:
+                    changeDirection(State.DOWN_IDLE);
+                    break;
+                case WALKING_LEFT:
+                    changeDirection(State.LEFT_IDLE);
+                    break;
+                case WALKING_RIGHT:
+                    changeDirection(State.RIGHT_IDLE);
+                    break;
+                default:
+                    changeDirection(State.STANDING);
+                    break;
+            }
+        }
 
 //        else {
 //            changeDirection(State.STANDING);
@@ -95,4 +120,6 @@ public class Entity {
     }
 
     public Vector2 getPosition() { return this.position; }
+    public int getX() { return (int) this.position.x; }
+    public int getY() { return (int) this.position.y; }
 }

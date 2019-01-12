@@ -27,7 +27,7 @@ public class Platformer extends Game {
         setScreen(new MenuScreen(this));
         img = new Texture("testimg.jpg");
 
-        this.player = new Player(0, 0, new Sprite(new Texture("basicChar.png")));
+        this.player = new Player(0, 0);
         player.setSize(Player.BASE_WIDTH, Player.BASE_HEIGHT);
 
         this.world = new World(cache, player) ;

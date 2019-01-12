@@ -10,10 +10,10 @@ public class PlayerAnimations {
     public static int FRAMES_WIDTH = 4;
     public static int FRAMES_HEIGHT = 8;
     private Animation<TextureRegion> standing_animation;
-    private Animation walking_up_animation;
+    private Animation<TextureRegion> walking_up_animation;
     private Animation<TextureRegion> walking_down_animation;
-    private Animation walking_left_animation;
-    private Animation walking_right_animation;
+    private Animation<TextureRegion> walking_left_animation;
+    private Animation<TextureRegion> walking_right_animation;
 
     public PlayerAnimations() {
         this.frames = Player.Character;

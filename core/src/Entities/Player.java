@@ -17,19 +17,22 @@ public class Player extends Entity{
     private int gridY;
     private int width;
     private int height;
-    private Animation movingUpAnimation;
-    private Animation movingDownAnimation;
-    private Animation movingRightAnimation;
-    private Animation movingLeftAnimation;
     private gameMap currentMap;
 
-    public Player(int x, int y, Sprite s) {
-        super(x, y, s);
+    public Player(int x, int y) {
+        super(x, y);
         this.width = BASE_WIDTH;
         this.height = BASE_HEIGHT;
         this.currentState = State.STANDING;
         TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
         this.animations = new PlayerAnimations();
+    }
+
+    public Animation<TextureRegion> getCurrentAnimation() {
+        if(this.currentState == State.WALKING_DOWN)
+        return this.animations.getWalking_down_animation();
+        else
+            return this.animations.getWalking_down_animation();
     }
 
     public void setMap(gameMap map) {
@@ -74,8 +77,15 @@ public class Player extends Entity{
     }
 
     public void setSize(int x, int y){
-        getSprite().setSize(x, y);
+        this.width = x;
+        this.height = y;
     }
 
+    public int getWidth() {
+        return width;
+    }
 
+    public int getHeight() {
+        return height;
+    }
 }

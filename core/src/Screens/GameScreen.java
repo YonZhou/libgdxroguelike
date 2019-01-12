@@ -2,6 +2,8 @@ package Screens;
 
 import Animations.PlayerAnimations;
 import Entities.Entity;
+import Entities.Player;
+import Entities.State;
 import Input.GameInput;
 import Tiles.BasicMap;
 import Tiles.gameMap;
@@ -9,9 +11,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.SpriteCache;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -21,13 +21,12 @@ import mainGame.Platformer;
 import mainGame.World;
 
 public class GameScreen extends AbstractScreen{
-    private Sprite playerSprite;
     private OrthographicCamera cam;
     private Viewport gamePort;
     private Stage mainStage;
     private gameMap currentMap;
     private SpriteBatch sBatch;
-    private Entity playerEntity;
+    private Player playerEntity;
     private World world;
     private mainGUI gui;
     private GameInput gameInput;
@@ -58,7 +57,6 @@ public class GameScreen extends AbstractScreen{
 //        testChar.setSize(100,100);
         this.world = ((Platformer)(game)).getWorld();
         this.currentMap = world.generateNewBasicMap();
-        this.playerSprite = ((Platformer)game).getPlayer().getSprite() ;
         this.playerEntity = ((Platformer)game).getPlayer() ;
 
         this.gui = new mainGUI(sBatch, ((Platformer)game).getPlayer());
@@ -97,13 +95,14 @@ public class GameScreen extends AbstractScreen{
         sBatch.setProjectionMatrix(cam.combined);
         sBatch.begin();
         drawPlayer();
-        sBatch.draw(test.getWalking_down_animation().getKeyFrame(deltaTime,true),0,0);
+        //sBatch.draw(test.getWalking_down_animation().getKeyFrame(deltaTime,true),0,0);
         sBatch.end();
 
     }
 
     private void drawPlayer() {
-        playerSprite.draw(sBatch);
+        Animation<TextureRegion> a = playerEntity.getCurrentAnimation();
+        sBatch.draw(a.getKeyFrame(deltaTime, true), playerEntity.getX(), playerEntity.getY(), playerEntity.getWidth(), playerEntity.getHeight());
     }
 
     private void updateCamera(Entity e){
