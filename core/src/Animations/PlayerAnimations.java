@@ -23,6 +23,10 @@ public class PlayerAnimations {
     private Animation<TextureRegion> idle_down_animation;
     private Animation<TextureRegion> idle_left_animation;
     private Animation<TextureRegion> idle_right_animation;
+    private Animation<TextureRegion> idle_up_left_animation;
+    private Animation<TextureRegion> idle_up_right_animation;
+    private Animation<TextureRegion> idle_down_left_animation;
+    private Animation<TextureRegion> idle_down_right_animation;
 
 
     public PlayerAnimations() {
@@ -32,6 +36,12 @@ public class PlayerAnimations {
         this.idle_left_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[1][0]);
         this.idle_right_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[2][0]);
         this.idle_up_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[3][0]);
+        this.idle_down_right_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[4][0]);
+        this.idle_down_left_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[5][0]);
+        this.idle_up_left_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[6][0]);
+        this.idle_up_right_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[7][0]);
+
+
 
         // initialize walking down animation
         TextureRegion[] walking_down_frames = new TextureRegion[FRAMES_WIDTH];
@@ -138,5 +148,23 @@ public class PlayerAnimations {
     public Animation<TextureRegion> getWalking_down_right_animation() {
         return walking_down_right_animation;
     }
+
+
+    public Animation<TextureRegion> getIdle_up_left_animation() {
+        return idle_up_left_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_up_right_animation() {
+        return idle_up_right_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_down_left_animation() {
+        return idle_down_left_animation;
+    }
+
+    public Animation<TextureRegion> getIdle_down_right_animation() {
+        return idle_down_right_animation;
+    }
+
 
 }

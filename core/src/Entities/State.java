@@ -13,7 +13,12 @@ public enum State {
     UP_IDLE(State_Type.IDLE),
     DOWN_IDLE(State_Type.IDLE),
     LEFT_IDLE(State_Type.IDLE),
-    RIGHT_IDLE(State_Type.IDLE);
+    RIGHT_IDLE(State_Type.IDLE),
+    UP_RIGHT_IDLE(State_Type.IDLE),
+    UP_LEFT_IDLE(State_Type.IDLE),
+    DOWN_RIGHT_IDLE(State_Type.IDLE),
+    DOWN_LEFT_IDLE(State_Type.IDLE);
+
 
     private State_Type type;
     State(State_Type type){

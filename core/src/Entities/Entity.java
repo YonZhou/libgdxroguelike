@@ -94,6 +94,18 @@ public class Entity {
                 case WALKING_RIGHT:
                     changeDirection(State.RIGHT_IDLE);
                     break;
+                case WALKING_UP_LEFT:
+                    changeDirection(State.UP_LEFT_IDLE);
+                    break;
+                case WALKING_UP_RIGHT:
+                    changeDirection(State.UP_RIGHT_IDLE);
+                    break;
+                case WALKING_DOWN_LEFT:
+                    changeDirection(State.DOWN_LEFT_IDLE);
+                    break;
+                case WALKING_DOWN_RIGHT:
+                    changeDirection(State.DOWN_RIGHT_IDLE);
+                    break;
                 default:
                     changeDirection(State.STANDING);
                     break;
