@@ -17,7 +17,8 @@ public class mainGUI {
     private OrthographicCamera cam;
     public Stage stage;
     public SpriteBatch sBatch;
-    private Label testLabel;
+    private Label FPSLabel;
+    private Label healthLabel;
     private Player player;
 
 
@@ -33,16 +34,19 @@ public class mainGUI {
         table.bottom();
         table.setFillParent(true);
 
-        testLabel = new Label(Float.toString(Gdx.graphics.getFramesPerSecond()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        table.add(testLabel).padBottom(10);
+        FPSLabel = new Label(Float.toString(Gdx.graphics.getFramesPerSecond()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        table.add(FPSLabel).padBottom(10);
+
+        healthLabel = new Label(Float.toString(Gdx.graphics.getFramesPerSecond()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        table.add(healthLabel).padBottom(20);
 
         stage.addActor(table);
 
     }
 
     public void render(){
-        //testLabel.setText(Float.toString(Gdx.graphics.getFramesPerSecond()));
-        testLabel.setText(player.getPosition().x + ", " + player.getPosition().y);
+        FPSLabel.setText(Float.toString(Gdx.graphics.getFramesPerSecond()));
+        healthLabel.setText(Integer.toString(player.getHealth()));
         stage.draw();
     }
 }

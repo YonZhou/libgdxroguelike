@@ -5,11 +5,14 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Entity {
     protected Sprite s;
-
     protected Vector2 position;
     private boolean movingUp, movingDown, movingRight, movingLeft;
     protected State currentState;
     private int speed = 10;
+    protected int health = 100;
+    protected int maxhealth = 100;
+    protected int width;
+    protected int height;
 
     public Entity(int x, int y){
         this.position = new Vector2(x,y);
@@ -17,6 +20,20 @@ public class Entity {
     public Entity(int x, int y, Sprite s){
         this.position = new Vector2(x,y);
         this.s = s;
+    }
+
+
+    public void setSize(int x, int y){
+        this.width = x;
+        this.height = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public State getCurrentState() { return this.currentState; }

@@ -15,14 +15,14 @@ public class Player extends Entity{
     private PlayerAnimations animations;
     private int gridX;
     private int gridY;
-    private int width;
-    private int height;
     private gameMap currentMap;
 
     public Player(int x, int y) {
         super(x, y);
         this.width = BASE_WIDTH;
         this.height = BASE_HEIGHT;
+        this.maxhealth = 100;
+        this.health = maxhealth;
         this.currentState = State.STANDING;
         TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
         this.animations = new PlayerAnimations();
@@ -63,7 +63,7 @@ public class Player extends Entity{
             return this.animations.getIdle_up_right_animation();
         else{
             System.out.println("else invoked");
-            return this.animations.getWalking_down_animation();
+            return this.animations.getIdle_down_animation();
         }
     }
 
@@ -108,16 +108,8 @@ public class Player extends Entity{
         return false;
     }
 
-    public void setSize(int x, int y){
-        this.width = x;
-        this.height = y;
+    public int getHealth() {
+        return this.health;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
 }
