@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public class Entity {
-    protected Sprite s;
+    //protected Sprite s;
     protected Vector2 position;
     private boolean movingUp, movingDown, movingRight, movingLeft;
     protected State currentState;
-    private int speed = 10;
+    protected int speed = 10;
     protected int health = 100;
     protected int maxhealth = 100;
     protected int width;
@@ -17,15 +17,20 @@ public class Entity {
     public Entity(int x, int y){
         this.position = new Vector2(x,y);
     }
-    public Entity(int x, int y, Sprite s){
-        this.position = new Vector2(x,y);
-        this.s = s;
-    }
+//    public Entity(int x, int y, Sprite s){
+//        this.position = new Vector2(x,y);
+//        this.s = s;
+//    }
 
 
     public void setSize(int x, int y){
         this.width = x;
         this.height = y;
+    }
+
+    public void drawHealthBar() {
+        double percent = (double)this.health / this.maxhealth;
+
     }
 
     public int getWidth() {
@@ -38,24 +43,24 @@ public class Entity {
 
     public State getCurrentState() { return this.currentState; }
 
-    public void setSprite(Sprite s){
-        this.s = s;
-    }
+//    public void setSprite(Sprite s){
+//        this.s = s;
+//    }
 
     public void move(int x, int y){
         this.position.set(this.position.x + x, this.position.y + y);
         //moveSprite(x, y);
     }
 
-    public Sprite getSprite(){ return this.s; }
+//    public Sprite getSprite(){ return this.s; }
 
-    public void moveSprite(int x, int y){
-        this.s.setPosition(this.position.x, this.position.y ) ;
-    }
+//    public void moveSprite(int x, int y){
+//        this.s.setPosition(this.position.x, this.position.y ) ;
+//    }
 
     public void updateMove(){
         updateDirection();
-        System.out.println(currentState);
+        //System.out.println(currentState);
         if(movingDown)
             move(0, -speed);
         if(movingUp)

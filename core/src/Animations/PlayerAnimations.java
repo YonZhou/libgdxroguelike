@@ -31,7 +31,7 @@ public class PlayerAnimations {
 
     public PlayerAnimations() {
         this.frames = Player.Character;
-        TextureRegion[][] splitRegion = TextureRegion.split(frames, frames.getWidth()/4, frames.getHeight()/8);
+        TextureRegion[][] splitRegion = TextureRegion.split(frames, frames.getWidth()/FRAMES_WIDTH, frames.getHeight()/FRAMES_HEIGHT);
         this.idle_down_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[0][0]);
         this.idle_left_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[1][0]);
         this.idle_right_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[2][0]);

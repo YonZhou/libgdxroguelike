@@ -1,13 +1,25 @@
 package Input;
 
 import Entities.Entity;
+import Entities.Player;
+import Screens.AbstractScreen;
+import Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input.Buttons;
+
+
 
 public class GameInput implements InputProcessor {
     private Entity mainEntity ;
-    public GameInput(Entity e) {this.mainEntity = e;};
+    private AbstractScreen screen;
+
+    public GameInput(Entity e, AbstractScreen screen) {
+        this.mainEntity = e;
+        this.screen = screen;
+    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -47,6 +59,11 @@ public class GameInput implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (button == Input.Buttons.LEFT){
+            ((GameScreen)screen).processLeftClick(screenX, screenY);
+            System.out.println("screenx at " + screenX + ", screeny at " + screenY);
+            return true;
+        }
         return false;
     }
 

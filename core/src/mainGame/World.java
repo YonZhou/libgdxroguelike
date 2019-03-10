@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class World {
-    private gameMap currentMap;
+    private Level currentLevel;
     private Player player;
     private SpriteCache sb;
 
@@ -17,20 +17,17 @@ public class World {
         this.player = p;
     }
 
-
-
-
-    public BasicMap generateNewBasicMap() {
-        this.currentMap = new BasicMap(sb) ;
-        this.player.setMap(currentMap);
-        return (BasicMap) this.currentMap;
+    public Level generateNewBasicLevel() {
+        this.currentLevel = new BasicLevel(sb) ;
+        this.player.setMap(currentLevel.getMap());
+        return this.currentLevel;
     }
 
-    public void setMap(gameMap map) {
-        this.currentMap = map;
+    public void setLevel(Level level) {
+        this.currentLevel = level;
     }
 
     public gameMap getCurrentMap() {
-        return this.currentMap ;
+        return this.currentLevel.getMap() ;
     }
 }

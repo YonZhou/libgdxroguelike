@@ -21,7 +21,11 @@ public class BasicMap extends gameMap{
     public void generateNewMap() {
         for(int i=0; i<height; i++) {
             for (int j = 0; j < width; j++) {
-                map[i][j] = new WalkTile();
+//                if(i == 5 && j == 5) {
+//                    map[i][j] = new BlockTile();
+//                } else {
+                    map[i][j] = new WalkTile();
+//                }
                 //System.out.println("i at " + i);
             }
         }

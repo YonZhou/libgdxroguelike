@@ -62,7 +62,7 @@ public class Player extends Entity{
         if(this.currentState == State.UP_RIGHT_IDLE)
             return this.animations.getIdle_up_right_animation();
         else{
-            System.out.println("else invoked");
+            //System.out.println("else invoked");
             return this.animations.getIdle_down_animation();
         }
     }
@@ -76,6 +76,10 @@ public class Player extends Entity{
         if(!collision(x, y)){
             super.move(x, y);
         }
+    }
+
+    public void sword_swing_1(int x, int y){
+
     }
 
 

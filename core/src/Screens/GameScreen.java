@@ -56,12 +56,12 @@ public class GameScreen extends AbstractScreen{
 //        this.testChar = new Sprite(new Texture("basicChar.png"));
 //        testChar.setSize(100,100);
         this.world = ((Platformer)(game)).getWorld();
-        this.currentMap = world.generateNewBasicMap();
+        this.currentMap = world.generateNewBasicLevel().getMap();
         this.playerEntity = ((Platformer)game).getPlayer() ;
 
         this.gui = new mainGUI(sBatch, ((Platformer)game).getPlayer());
 
-        this.gameInput = new GameInput(playerEntity);
+        this.gameInput = new GameInput(playerEntity, this);
     }
 
 
@@ -100,11 +100,29 @@ public class GameScreen extends AbstractScreen{
 
     }
 
+    // draws the player sprite along with healthbar
     private void drawPlayer() {
         Animation<TextureRegion> a = playerEntity.getCurrentAnimation();
         //assert(a.getKeyFrame(deltaTime, true) != null);
         //System.out.println(a);
         sBatch.draw(a.getKeyFrame(deltaTime, true), playerEntity.getX(), playerEntity.getY(), playerEntity.getWidth(), playerEntity.getHeight());
+    }
+
+    private void drawPlayerHealth() {
+        
+    }
+
+    public void processLeftClick(int screenx, int screeny) {
+//        double relativeX = Gdx.graphics.getWidth()/(double)screenx;
+//        double relativeY = Gdx.graphics.getHeight()/(double)screeny;
+//        System.out.println("x at " + relativeX + ", y at " + relativeY);
+        if(screenx < Gdx.graphics.getWidth() / 2) {
+            System.out.println("left side pressed");
+        }
+    }
+
+    private void updateCursor() {
+
     }
 
     private void updateCamera(Entity e){

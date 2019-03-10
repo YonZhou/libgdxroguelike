@@ -17,8 +17,8 @@ public enum State {
     UP_RIGHT_IDLE(State_Type.IDLE),
     UP_LEFT_IDLE(State_Type.IDLE),
     DOWN_RIGHT_IDLE(State_Type.IDLE),
-    DOWN_LEFT_IDLE(State_Type.IDLE);
-
+    DOWN_LEFT_IDLE(State_Type.IDLE),
+    SWORD_SWINGING(State_Type.ATTACKING);
 
     private State_Type type;
     State(State_Type type){
@@ -31,6 +31,7 @@ public enum State {
 
     public enum State_Type{
         MOVING,
-        IDLE
+        IDLE,
+        ATTACKING
     }
 }

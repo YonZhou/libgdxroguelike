@@ -17,7 +17,6 @@ public class Platformer extends Game {
     private InputMultiplexer mainMultiplexer;
     private World world;
     private Player player;
-    Texture img;
 
     @Override
     public void create () {
@@ -25,7 +24,6 @@ public class Platformer extends Game {
         cache = new SpriteCache(BasicMap.basic_height * BasicMap.basic_width * 10, false);
 
         setScreen(new MenuScreen(this));
-        img = new Texture("testimg.jpg");
 
         this.player = new Player(0, 0);
         player.setSize(Player.BASE_WIDTH, Player.BASE_HEIGHT);
