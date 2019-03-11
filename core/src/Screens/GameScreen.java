@@ -116,8 +116,22 @@ public class GameScreen extends AbstractScreen{
 //        double relativeX = Gdx.graphics.getWidth()/(double)screenx;
 //        double relativeY = Gdx.graphics.getHeight()/(double)screeny;
 //        System.out.println("x at " + relativeX + ", y at " + relativeY);
-        if(screenx < Gdx.graphics.getWidth() / 2) {
-            System.out.println("left side pressed");
+        double midx = Gdx.graphics.getWidth()/2;
+        double midy = Gdx.graphics.getHeight()/2;
+        double relativeX = screenx-midx;
+        double relativeY = midy-screeny;
+        System.out.println(relativeX + ", " + relativeY);
+        double angle = Math.atan2(relativeY, relativeX);
+        System.out.println(angle);
+        if(angle >= Math.PI/4 && angle < Math.PI/4 * 3){
+            System.out.println("top quadrant");
+            playerEntity.attack(1);
+        } else if (angle >= -Math.PI/4 && angle < Math.PI/4) {
+            System.out.println("right quadrant");
+        } else if (angle < -Math.PI/4 && angle >= -Math.PI/4 * 3) {
+            System.out.println("bottom quadrant");
+        } else {
+            System.out.println("left quadrant");
         }
     }
 

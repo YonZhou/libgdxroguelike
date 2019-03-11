@@ -18,6 +18,7 @@ public enum State {
     UP_LEFT_IDLE(State_Type.IDLE),
     DOWN_RIGHT_IDLE(State_Type.IDLE),
     DOWN_LEFT_IDLE(State_Type.IDLE),
+    NOT_ATTACKING(State_Type.IDLE),
     SWORD_SWINGING(State_Type.ATTACKING);
 
     private State_Type type;

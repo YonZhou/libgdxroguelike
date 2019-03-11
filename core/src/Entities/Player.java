@@ -15,6 +15,7 @@ public class Player extends Entity{
     private PlayerAnimations animations;
     private int gridX;
     private int gridY;
+    private State attackingState;
     private gameMap currentMap;
 
     public Player(int x, int y) {
@@ -24,6 +25,7 @@ public class Player extends Entity{
         this.maxhealth = 100;
         this.health = maxhealth;
         this.currentState = State.STANDING;
+        this.attackingState = State.NOT_ATTACKING;
         TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
         this.animations = new PlayerAnimations();
     }
@@ -78,8 +80,21 @@ public class Player extends Entity{
         }
     }
 
-    public void sword_swing_1(int x, int y){
+    public void attack(int direction){
+        sword_swing_1(direction);
 
+    }
+    public void sword_swing_1(int direction){
+        switch(direction){
+            case 0:
+                return;
+            case 1:
+                return;
+            case 2:
+                return;
+            case 3:
+                return;
+        }
     }
 
 
