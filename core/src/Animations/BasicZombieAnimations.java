@@ -23,5 +23,23 @@ public class BasicZombieAnimations {
             down_frames[i] = animationRegions[0][i];
         }
         this.walking_down_animation = new Animation<TextureRegion>(FRAME_DURATION, down_frames);
+
+        TextureRegion[] up_frames = new TextureRegion[3];
+        for(int i = 0; i < FRAMES_WIDTH; i++){
+            up_frames[i] = animationRegions[3][i];
+        }
+        this.walking_up_animation = new Animation<TextureRegion>(FRAME_DURATION, up_frames);
+
+        TextureRegion[] left_frames = new TextureRegion[3];
+        for(int i = 0; i < FRAMES_WIDTH; i++){
+            left_frames[i] = animationRegions[1][i];
+        }
+        this.walking_left_animation = new Animation<TextureRegion>(FRAME_DURATION, left_frames);
+
+        TextureRegion[] right_frames = new TextureRegion[3];
+        for(int i = 0; i < FRAMES_WIDTH; i++){
+            right_frames[i] = animationRegions[2][i];
+        }
+        this.walking_right_animation = new Animation<TextureRegion>(FRAME_DURATION, right_frames);
     }
 }

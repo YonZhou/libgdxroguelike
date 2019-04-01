@@ -1,5 +1,7 @@
 package Entities;
 
+import Input.Direction;
+
 public enum State {
     STANDING (State_Type.IDLE),
     WALKING_UP (State_Type.MOVING),
@@ -22,9 +24,11 @@ public enum State {
     SWORD_SWINGING(State_Type.ATTACKING);
 
     private State_Type type;
+    private Direction dir;
     State(State_Type type){
         this.type = type;
     }
+    State(Direction dir) { this.dir = dir;}
 
     public boolean isType(State_Type type){
         return this.type == type;
@@ -33,6 +37,7 @@ public enum State {
     public enum State_Type{
         MOVING,
         IDLE,
-        ATTACKING
+        ATTACKING,
+
     }
 }

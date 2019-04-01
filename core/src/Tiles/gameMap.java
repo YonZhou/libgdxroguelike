@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public abstract class gameMap {
     public SpriteCache batch;
     public Tile[][] map;
+    public int[][] masks;
     protected int cID;
     protected int height;
     protected int width;
@@ -64,6 +65,14 @@ public abstract class gameMap {
     }
     public int getHeight() {
         return this.height;
+    }
+
+    public int generateEnemies() {
+        int enemyCount = 10;
+        for(int i = 0; i < enemyCount; i++){
+
+        }
+        return enemyCount;
     }
 
 }

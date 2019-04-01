@@ -4,9 +4,11 @@ import Animations.PlayerAnimations;
 import Entities.Entity;
 import Entities.Player;
 import Entities.State;
+import Input.Direction;
 import Input.GameInput;
 import Tiles.BasicMap;
 import Tiles.gameMap;
+import Weapons.Weapon;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -95,6 +97,7 @@ public class GameScreen extends AbstractScreen{
         sBatch.setProjectionMatrix(cam.combined);
         sBatch.begin();
         drawPlayer();
+        drawObjects();
         //sBatch.draw(test.getWalking_down_animation().getKeyFrame(deltaTime,true),0,0);
         sBatch.end();
 
@@ -108,8 +111,29 @@ public class GameScreen extends AbstractScreen{
         sBatch.draw(a.getKeyFrame(deltaTime, true), playerEntity.getX(), playerEntity.getY(), playerEntity.getWidth(), playerEntity.getHeight());
     }
 
+    private void drawObjects() {
+        if(playerEntity.attackingState == State.SWORD_SWINGING){
+            Weapon sword = playerEntity.getWeapon();
+            switch(playerEntity.direction){
+                case UP:
+                    sBatch.draw(sword.getTexture(), playerEntity.getX(), playerEntity.getY() + playerEntity.getHeight(), sword.width, sword.height);
+                    break;
+                case DOWN:
+                    break;
+                case LEFT:
+                    break;
+                case RIGHT:
+                    break;
+            }
+        }
+    }
+
     private void drawPlayerHealth() {
         
+    }
+
+    private void drawPlayers() {
+
     }
 
     public void processLeftClick(int screenx, int screeny) {
@@ -125,18 +149,17 @@ public class GameScreen extends AbstractScreen{
         System.out.println(angle);
         if(angle >= Math.PI/4 && angle < Math.PI/4 * 3){
             System.out.println("top quadrant");
-            playerEntity.attack(1);
+            playerEntity.attack(Direction.UP);
         } else if (angle >= -Math.PI/4 && angle < Math.PI/4) {
             System.out.println("right quadrant");
+            playerEntity.attack(Direction.RIGHT);
         } else if (angle < -Math.PI/4 && angle >= -Math.PI/4 * 3) {
             System.out.println("bottom quadrant");
+            playerEntity.attack(Direction.DOWN);
         } else {
             System.out.println("left quadrant");
+            playerEntity.attack(Direction.LEFT);
         }
-    }
-
-    private void updateCursor() {
-
     }
 
     private void updateCamera(Entity e){

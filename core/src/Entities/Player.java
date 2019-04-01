@@ -1,8 +1,11 @@
 package Entities;
 
 import Animations.PlayerAnimations;
+import Input.Direction;
 import Tiles.*;
 import Tiles.gameMap;
+import Weapons.Sword;
+import Weapons.Weapon;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -12,11 +15,10 @@ public class Player extends Entity{
     public static int BASE_HEIGHT = 100;
     public static int BASE_WIDTH = 100;
     public static Texture Character = new Texture("stella_walk.png");
-    private PlayerAnimations animations;
+    private PlayerAnimations animations = new PlayerAnimations();
     private int gridX;
     private int gridY;
-    private State attackingState;
-    private gameMap currentMap;
+    public State attackingState;
 
     public Player(int x, int y) {
         super(x, y);
@@ -26,8 +28,8 @@ public class Player extends Entity{
         this.health = maxhealth;
         this.currentState = State.STANDING;
         this.attackingState = State.NOT_ATTACKING;
+        this.equippedWeapon = new Sword(0,0);
         TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
-        this.animations = new PlayerAnimations();
     }
 
     public Animation<TextureRegion> getCurrentAnimation() {
@@ -80,19 +82,23 @@ public class Player extends Entity{
         }
     }
 
-    public void attack(int direction){
-        sword_swing_1(direction);
-
+    public void attack(Direction direction){
+        if(equippedWeapon instanceof Sword){
+            sword_swing_1(direction);
+            attackingState = State.SWORD_SWINGING;
+        }
     }
-    public void sword_swing_1(int direction){
+
+    public void sword_swing_1(Direction direction){
+        this.direction = direction;
         switch(direction){
-            case 0:
+            case UP:
                 return;
-            case 1:
+            case DOWN:
                 return;
-            case 2:
+            case RIGHT:
                 return;
-            case 3:
+            case LEFT:
                 return;
         }
     }
@@ -102,30 +108,6 @@ public class Player extends Entity{
 
     }
 
-    public boolean collision(int x, int y) {
-        int px = (int) position.x + x;
-        int py = (int) position.y + y;
-        if(px < 0 || py < 0){
-            return true;
-        }
-
-        if(px + width >= (currentMap.getWidth() )* Tiles.TILE_SIZE || py + height>= (currentMap.getHeight()) * Tiles.TILE_SIZE) {
-            return true;
-        }
-        if(currentMap.getTilePixels(px, py).isBlocked()){
-            return true;
-        }
-        if(currentMap.getTilePixels(px+width, py).isBlocked()){
-            return true;
-        }
-        if(currentMap.getTilePixels(px+width, py+height).isBlocked()){
-            return true;
-        }
-        if(currentMap.getTilePixels(px, py+height).isBlocked()){
-            return true;
-        }
-        return false;
-    }
 
     public int getHealth() {
         return this.health;

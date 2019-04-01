@@ -1,7 +1,11 @@
 package Entities;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import Input.Direction;
+import Tiles.gameMap;
+import Tiles.Tiles;
+import Weapons.Weapon;
 import com.badlogic.gdx.math.Vector2;
+
 
 public class Entity {
     //protected Sprite s;
@@ -11,8 +15,12 @@ public class Entity {
     protected int speed = 10;
     protected int health = 100;
     protected int maxhealth = 100;
+    protected Weapon equippedWeapon;
     protected int width;
     protected int height;
+    protected gameMap currentMap;
+    public Direction direction;
+
 
     public Entity(int x, int y){
         this.position = new Vector2(x,y);
@@ -140,6 +148,31 @@ public class Entity {
 
     }
 
+    public boolean collision(int x, int y) {
+        int px = (int) position.x + x;
+        int py = (int) position.y + y;
+        if(px < 0 || py < 0){
+            return true;
+        }
+
+        if(px + width >= (currentMap.getWidth() )* Tiles.TILE_SIZE || py + height>= (currentMap.getHeight()) * Tiles.TILE_SIZE) {
+            return true;
+        }
+        if(currentMap.getTilePixels(px, py).isBlocked()){
+            return true;
+        }
+        if(currentMap.getTilePixels(px+width, py).isBlocked()){
+            return true;
+        }
+        if(currentMap.getTilePixels(px+width, py+height).isBlocked()){
+            return true;
+        }
+        if(currentMap.getTilePixels(px, py+height).isBlocked()){
+            return true;
+        }
+        return false;
+    }
+
     public void setMovingUp(Boolean set){
         movingUp = set;
     }
@@ -156,4 +189,7 @@ public class Entity {
     public Vector2 getPosition() { return this.position; }
     public int getX() { return (int) this.position.x; }
     public int getY() { return (int) this.position.y; }
+    public Weapon getWeapon() {
+        return this.equippedWeapon;
+    }
 }
