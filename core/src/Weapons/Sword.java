@@ -12,7 +12,9 @@ public class Sword extends Weapon {
     public Sword(int x, int y) {
         super(x, y);
         this.texture = basicSword;
+        this.sprite = new Sprite(this.texture);
         this.width = 100;
         this.height = 100;
+        this.sprite.setSize(width, height);
     }
 }

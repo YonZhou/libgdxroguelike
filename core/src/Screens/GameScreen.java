@@ -114,11 +114,21 @@ public class GameScreen extends AbstractScreen{
     private void drawObjects() {
         if(playerEntity.attackingState == State.SWORD_SWINGING){
             Weapon sword = playerEntity.getWeapon();
+            sword.getSprite().setCenter(playerEntity.getX(), playerEntity.getY());
+            sword.getSprite().setOrigin(sword.getSprite().getWidth()/2, 0);
+
             switch(playerEntity.direction){
                 case UP:
-                    sBatch.draw(sword.getTexture(), playerEntity.getX(), playerEntity.getY() + playerEntity.getHeight(), sword.width, sword.height);
+                    sword.getSprite().rotate(1);
+                    sword.getSprite().setPosition(playerEntity.getX(), playerEntity.getY() + playerEntity.getHeight());
+                    sword.getSprite().draw(sBatch);
                     break;
                 case DOWN:
+
+                    sword.getSprite().rotate(1);
+                    sword.getSprite().setPosition(playerEntity.getX(), playerEntity.getY() - playerEntity.getHeight());
+                    //sBatch.draw(sword.getSprite(), playerEntity.getX(), playerEntity.getY() - playerEntity.getHeight(), sword.width, sword.height);
+                    sword.getSprite().draw(sBatch);
                     break;
                 case LEFT:
                     break;
