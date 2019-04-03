@@ -6,19 +6,19 @@ import Tiles.*;
 import Tiles.gameMap;
 import Weapons.Sword;
 import Weapons.Weapon;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Player extends Entity{
+public class Player extends Living{
     public static int BASE_HEIGHT = 100;
     public static int BASE_WIDTH = 100;
     public static Texture Character = new Texture("stella_walk.png");
     private PlayerAnimations animations = new PlayerAnimations();
     private int gridX;
     private int gridY;
-    public State attackingState;
 
     public Player(int x, int y) {
         super(x, y);
@@ -28,7 +28,7 @@ public class Player extends Entity{
         this.health = maxhealth;
         this.currentState = State.STANDING;
         this.attackingState = State.NOT_ATTACKING;
-        this.equippedWeapon = new Sword(0,0);
+        this.equippedWeapon = new Sword(0,0, this);
         TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
     }
 
@@ -82,26 +82,10 @@ public class Player extends Entity{
         }
     }
 
-    public void attack(Direction direction){
-        if(equippedWeapon instanceof Sword){
-            sword_swing_1(direction);
-            attackingState = State.SWORD_SWINGING;
-        }
+    public void attack(int x, int y){
+        this.equippedWeapon.attack(x, y);
     }
 
-    public void sword_swing_1(Direction direction){
-        this.direction = direction;
-        switch(direction){
-            case UP:
-                return;
-            case DOWN:
-                return;
-            case RIGHT:
-                return;
-            case LEFT:
-                return;
-        }
-    }
 
 
     public void updatePlayerLocation() {

@@ -14,7 +14,6 @@ public class Platformer extends Game {
 
     public SpriteBatch batch;
     public SpriteCache cache;
-    private InputMultiplexer mainMultiplexer;
     private World world;
     private Player player;
 

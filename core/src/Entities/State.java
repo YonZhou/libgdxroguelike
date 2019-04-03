@@ -28,7 +28,6 @@ public enum State {
     State(State_Type type){
         this.type = type;
     }
-    State(Direction dir) { this.dir = dir;}
 
     public boolean isType(State_Type type){
         return this.type == type;

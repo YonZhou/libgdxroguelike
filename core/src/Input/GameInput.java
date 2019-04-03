@@ -1,6 +1,7 @@
 package Input;
 
 import Entities.Entity;
+import Entities.Living;
 import Entities.Player;
 import Screens.AbstractScreen;
 import Screens.GameScreen;
@@ -13,10 +14,10 @@ import com.badlogic.gdx.Input.Buttons;
 
 
 public class GameInput implements InputProcessor {
-    private Entity mainEntity ;
+    private Living mainEntity ;
     private AbstractScreen screen;
 
-    public GameInput(Entity e, AbstractScreen screen) {
+    public GameInput(Living e, AbstractScreen screen) {
         this.mainEntity = e;
         this.screen = screen;
     }

@@ -96,8 +96,8 @@ public class GameScreen extends AbstractScreen{
 
         sBatch.setProjectionMatrix(cam.combined);
         sBatch.begin();
-        drawPlayer();
         drawObjects();
+        drawPlayer();
         //sBatch.draw(test.getWalking_down_animation().getKeyFrame(deltaTime,true),0,0);
         sBatch.end();
 
@@ -114,27 +114,8 @@ public class GameScreen extends AbstractScreen{
     private void drawObjects() {
         if(playerEntity.attackingState == State.SWORD_SWINGING){
             Weapon sword = playerEntity.getWeapon();
-            sword.getSprite().setCenter(playerEntity.getX(), playerEntity.getY());
-            sword.getSprite().setOrigin(sword.getSprite().getWidth()/2, 0);
-
-            switch(playerEntity.direction){
-                case UP:
-                    sword.getSprite().rotate(1);
-                    sword.getSprite().setPosition(playerEntity.getX(), playerEntity.getY() + playerEntity.getHeight());
-                    sword.getSprite().draw(sBatch);
-                    break;
-                case DOWN:
-
-                    sword.getSprite().rotate(1);
-                    sword.getSprite().setPosition(playerEntity.getX(), playerEntity.getY() - playerEntity.getHeight());
-                    //sBatch.draw(sword.getSprite(), playerEntity.getX(), playerEntity.getY() - playerEntity.getHeight(), sword.width, sword.height);
-                    sword.getSprite().draw(sBatch);
-                    break;
-                case LEFT:
-                    break;
-                case RIGHT:
-                    break;
-            }
+            sword.updateWeapon(deltaTime);
+            sword.getSprite().draw(sBatch);
         }
     }
 
@@ -154,21 +135,9 @@ public class GameScreen extends AbstractScreen{
         double midy = Gdx.graphics.getHeight()/2;
         double relativeX = screenx-midx;
         double relativeY = midy-screeny;
-        System.out.println(relativeX + ", " + relativeY);
-        double angle = Math.atan2(relativeY, relativeX);
-        System.out.println(angle);
-        if(angle >= Math.PI/4 && angle < Math.PI/4 * 3){
-            System.out.println("top quadrant");
-            playerEntity.attack(Direction.UP);
-        } else if (angle >= -Math.PI/4 && angle < Math.PI/4) {
-            System.out.println("right quadrant");
-            playerEntity.attack(Direction.RIGHT);
-        } else if (angle < -Math.PI/4 && angle >= -Math.PI/4 * 3) {
-            System.out.println("bottom quadrant");
-            playerEntity.attack(Direction.DOWN);
-        } else {
-            System.out.println("left quadrant");
-            playerEntity.attack(Direction.LEFT);
+
+        if(playerEntity.getWeapon() != null){
+            playerEntity.attack((int)relativeX, (int)relativeY);
         }
     }
 
