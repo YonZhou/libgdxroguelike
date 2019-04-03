@@ -15,11 +15,14 @@ public class Weapon extends Entity {
     public int height;
     protected State state;
     protected Living equippedE;
+    protected double rotation;
+
 
     public Weapon(int x, int y, Living e) {
         super(x, y);
         this.state = State.NOT_ATTACKING;
         this.equippedE = e;
+        rotation = 0;
     }
     public Texture getTexture() {return this.texture;}
     public Sprite getSprite() { return sprite;}

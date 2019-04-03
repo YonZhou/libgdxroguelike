@@ -9,26 +9,35 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Sword extends Weapon {
+    // angles per second in rotation(base speed, can be changed or improved later)
+    protected static final int SPEED = 180*2;
+
     private static Texture basicSword = new Texture("Weapons/basic_sword.png");
     protected int reach;
+    protected double range;
+
+    // speed is radians per deltaTime
+    protected double speed;
     protected Direction direction;
     private double runTime;
 
-
+    // rotation is relative to start of swing (represents swing rotation)
     public Sword(int x, int y, Living e) {
         super(x, y, e);
         this.texture = basicSword;
         this.sprite = new Sprite(this.texture);
         this.width = 100;
         this.height = 100;
+        this.range = 180;
         this.sprite.setSize(width, height);
     }
 
     @Override
     public void updateWeapon(double deltaTime) {
         runTime += deltaTime;
+        System.out.println(speed);
 
-        if(runTime / deltaTime > 50) {
+        if(rotation > this.range) {
             this.equippedE.setAttackingState(State.NOT_ATTACKING);
             return;
         }
@@ -50,13 +59,16 @@ public class Sword extends Weapon {
                 getSprite().setPosition(equippedE.getX() + equippedE.getWidth()/2, equippedE.getY() + equippedE.getHeight()/2);
                 break;
         }
-        getSprite().rotate(-4);
+        getSprite().rotate(-(float)speed);
+        rotation += speed;
 
     }
 
     @Override
     public void attack(int x, int y){
+        rotation = 0;
         this.runTime = Gdx.graphics.getDeltaTime();
+        this.speed = SPEED*Gdx.graphics.getDeltaTime();
         this.equippedE.setAttackingState(State.SWORD_SWINGING);
 
         double angle = Math.atan2(y, x);
