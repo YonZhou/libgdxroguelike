@@ -8,6 +8,7 @@ import Input.Direction;
 import Input.GameInput;
 import Tiles.BasicMap;
 import Tiles.gameMap;
+import Weapons.Sword;
 import Weapons.Weapon;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -112,10 +113,18 @@ public class GameScreen extends AbstractScreen{
     }
 
     private void drawObjects() {
-        if(playerEntity.attackingState == State.SWORD_SWINGING){
-            Weapon sword = playerEntity.getWeapon();
-            sword.updateWeapon(deltaTime);
-            sword.getSprite().draw(sBatch);
+        Weapon wep = playerEntity.getWeapon();
+
+        // handle the logic for cooldowns and if weapon is ready
+        if(!wep.isReady()){
+            wep.addRunTime(Gdx.graphics.getDeltaTime());
+            wep.updateCooldown();
+        }
+
+        // handle update for animating weapon motion and drawing it
+        if(wep.isActive()){
+            wep.getSprite().draw(sBatch);
+            wep.updateWeapon();
         }
     }
 
@@ -136,7 +145,7 @@ public class GameScreen extends AbstractScreen{
         double relativeX = screenx-midx;
         double relativeY = midy-screeny;
 
-        if(playerEntity.getWeapon() != null){
+        if(playerEntity.getWeapon() != null && playerEntity.getWeapon().isReady()){
             playerEntity.attack((int)relativeX, (int)relativeY);
         }
     }
