@@ -15,8 +15,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Player extends Living{
     public static int BASE_HEIGHT = 100;
     public static int BASE_WIDTH = 100;
+    protected int stamina = 100;
+    protected int maxStamina = 100;
     public static Texture Character = new Texture("stella_walk.png");
-    private PlayerAnimations animations = new PlayerAnimations();
     private int gridX;
     private int gridY;
 
@@ -29,9 +30,11 @@ public class Player extends Living{
         this.currentState = State.STANDING;
         this.attackingState = State.NOT_ATTACKING;
         this.equippedWeapon = new Sword(0,0, this);
+        this.animations = new PlayerAnimations();
         TextureRegion[][] frames = TextureRegion.split(Character, 200, 200);
     }
 
+    @Override
     public Animation<TextureRegion> getCurrentAnimation() {
         if(this.currentState == State.WALKING_DOWN)
             return this.animations.getWalking_down_animation();
@@ -71,10 +74,6 @@ public class Player extends Living{
         }
     }
 
-    public void setMap(gameMap map) {
-        this.currentMap = map;
-    }
-
     @Override
     public void move(int x, int y){
         if(!collision(x, y)){
@@ -86,8 +85,6 @@ public class Player extends Living{
         this.equippedWeapon.attack(x, y);
     }
 
-
-
     public void updatePlayerLocation() {
 
     }
@@ -95,6 +92,14 @@ public class Player extends Living{
 
     public int getHealth() {
         return this.health;
+    }
+
+    public int getStamina() {
+        return this.stamina;
+    }
+
+    public int getMaxStaminaStamina() {
+        return this.maxStamina;
     }
 
 }

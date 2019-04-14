@@ -48,7 +48,10 @@ public class Weapon extends Entity {
         this.runTime += time;
     }
 
-    public void attack(int x, int y){};
+    // called when weapon attacks
+    public void attack(int x, int y){}
+
+    // called during every timestep of game, runs while weapon is active
     public void updateWeapon() {
     }
 }

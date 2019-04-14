@@ -44,6 +44,9 @@ public class Sword extends Weapon {
             return;
         }
 
+        // check for enemies during swing and hit them
+        checkEnemies();
+
         getSprite().setCenter(equippedE.getX(), equippedE.getY());
 
         switch(direction){
@@ -67,12 +70,13 @@ public class Sword extends Weapon {
 
     @Override
     public void attack(int x, int y){
-        rotation = 0;
-        runTime = 0;
         active = true;
-        this.speed = SPEED*Gdx.graphics.getDeltaTime();
         this.equippedE.setAttackingState(State.SWORD_SWINGING);
         this.ready =false;
+
+        rotation = 0;
+        runTime = 0;
+        this.speed = SPEED*Gdx.graphics.getDeltaTime();
 
         double angle = Math.atan2(y, x);
         getSprite().setOrigin(getSprite().getWidth()/2, 0);
@@ -98,5 +102,10 @@ public class Sword extends Weapon {
             getSprite().setPosition(equippedE.getX(), equippedE.getY() + equippedE.getHeight()/2);
             getSprite().setRotation(180);
         }
+    }
+
+    public void checkEnemies() {
+        // should get a list of all enemies to check first by calling the map, but for now just check all enemies
+
     }
 }

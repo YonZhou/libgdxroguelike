@@ -5,28 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class PlayerAnimations {
+public class PlayerAnimations extends LivingAnimation{
     private Texture frames;
     public static float FRAME_DURATION = 1f/4f;
     public static int FRAMES_WIDTH = 4;
     public static int FRAMES_HEIGHT = 8;
-    private Animation<TextureRegion> standing_animation;
-    private Animation<TextureRegion> walking_up_animation;
-    private Animation<TextureRegion> walking_down_animation;
-    private Animation<TextureRegion> walking_left_animation;
-    private Animation<TextureRegion> walking_right_animation;
-    private Animation<TextureRegion> walking_up_left_animation;
-    private Animation<TextureRegion> walking_up_right_animation;
-    private Animation<TextureRegion> walking_down_left_animation;
-    private Animation<TextureRegion> walking_down_right_animation;
-    private Animation<TextureRegion> idle_up_animation;
-    private Animation<TextureRegion> idle_down_animation;
-    private Animation<TextureRegion> idle_left_animation;
-    private Animation<TextureRegion> idle_right_animation;
-    private Animation<TextureRegion> idle_up_left_animation;
-    private Animation<TextureRegion> idle_up_right_animation;
-    private Animation<TextureRegion> idle_down_left_animation;
-    private Animation<TextureRegion> idle_down_right_animation;
 
 
     public PlayerAnimations() {
@@ -99,71 +82,6 @@ public class PlayerAnimations {
         }
         this.walking_up_right_animation = new Animation(FRAME_DURATION, walking_up_right_frames);
 
-    }
-
-    public Animation<TextureRegion> getWalking_down_animation(){
-        return this.walking_down_animation;
-    }
-    public Animation<TextureRegion> getWalking_up_animation() {
-        return walking_up_animation;
-    }
-
-    public Animation<TextureRegion> getWalking_left_animation() {
-        return walking_left_animation;
-    }
-
-    public Animation<TextureRegion> getWalking_right_animation() {
-        return walking_right_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_up_animation() {
-        return idle_up_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_down_animation() {
-        return idle_down_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_left_animation() {
-        return idle_left_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_right_animation() {
-        return idle_right_animation;
-    }
-
-
-    public Animation<TextureRegion> getWalking_up_left_animation() {
-        return walking_up_left_animation;
-    }
-
-    public Animation<TextureRegion> getWalking_up_right_animation() {
-        return walking_up_right_animation;
-    }
-
-    public Animation<TextureRegion> getWalking_down_left_animation() {
-        return walking_down_left_animation;
-    }
-
-    public Animation<TextureRegion> getWalking_down_right_animation() {
-        return walking_down_right_animation;
-    }
-
-
-    public Animation<TextureRegion> getIdle_up_left_animation() {
-        return idle_up_left_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_up_right_animation() {
-        return idle_up_right_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_down_left_animation() {
-        return idle_down_left_animation;
-    }
-
-    public Animation<TextureRegion> getIdle_down_right_animation() {
-        return idle_down_right_animation;
     }
 
 

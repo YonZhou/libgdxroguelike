@@ -5,6 +5,7 @@ import Tiles.gameMap;
 import Tiles.Tiles;
 import Weapons.Weapon;
 import com.badlogic.gdx.math.Vector2;
+import mainGame.Level;
 
 
 public class Entity {
@@ -12,7 +13,7 @@ public class Entity {
     protected Vector2 position;
     protected int width;
     protected int height;
-    protected gameMap currentMap;
+    protected Level currentLevel;
     public Direction direction;
 
 
@@ -23,7 +24,6 @@ public class Entity {
 //        this.position = new Vector2(x,y);
 //        this.s = s;
 //    }
-
 
     public void setSize(int x, int y){
         this.width = x;
@@ -56,6 +56,7 @@ public class Entity {
 
 
     public boolean collision(int x, int y) {
+        gameMap currentMap = this.currentLevel.getMap();
         int px = (int) position.x + x;
         int py = (int) position.y + y;
         if(px < 0 || py < 0){
@@ -81,6 +82,9 @@ public class Entity {
     }
 
     public Vector2 getPosition() { return this.position; }
+    public void setLevel(Level level) {
+        this.currentLevel = level;
+    }
     public int getX() { return (int) this.position.x; }
     public int getY() { return (int) this.position.y; }
 

@@ -60,6 +60,7 @@ public abstract class gameMap {
         return getTileAt(newX, newY);
     }
 
+    // height and width are relative to "grid" and not pixels
     public int getWidth() {
         return this.width;
     }

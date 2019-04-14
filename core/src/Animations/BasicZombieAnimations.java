@@ -1,17 +1,16 @@
 package Animations;
 
 import Entities.BasicZombie;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class BasicZombieAnimations {
+// Class to handle zombie animations, note they can only move in 4 directions
+public class BasicZombieAnimations extends LivingAnimation{
     public static float FRAME_DURATION = 1f/4f;
     public static int FRAMES_WIDTH = 3;
     public static int FRAMES_HEIGHT = 4;
-    private Animation<TextureRegion> walking_up_animation;
-    private Animation<TextureRegion> walking_down_animation;
-    private Animation<TextureRegion> walking_left_animation;
-    private Animation<TextureRegion> walking_right_animation;
+
 
     public BasicZombieAnimations() {
         TextureRegion[][] animationRegions = TextureRegion.split(BasicZombie.Character,
@@ -41,5 +40,10 @@ public class BasicZombieAnimations {
             right_frames[i] = animationRegions[2][i];
         }
         this.walking_right_animation = new Animation<TextureRegion>(FRAME_DURATION, right_frames);
+
+        Texture frames = BasicZombie.Character;
+        TextureRegion[][] splitRegion = TextureRegion.split(frames, frames.getWidth()/FRAMES_WIDTH, frames.getHeight()/FRAMES_HEIGHT);
+        this.idle_down_animation = new Animation<TextureRegion>(FRAME_DURATION, splitRegion[0][0]);
+
     }
 }

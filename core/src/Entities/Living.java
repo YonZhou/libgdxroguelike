@@ -1,6 +1,9 @@
 package Entities;
 
+import Animations.LivingAnimation;
 import Weapons.Weapon;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Living extends Entity{
     private boolean movingUp, movingDown, movingRight, movingLeft;
@@ -9,6 +12,7 @@ public class Living extends Entity{
     protected int health = 100;
     protected int maxhealth = 100;
     protected Weapon equippedWeapon;
+    protected LivingAnimation animations;
     public State attackingState;
 
     public Living(int x, int y) {
@@ -19,6 +23,7 @@ public class Living extends Entity{
         return this.equippedWeapon;
     }
 
+    //called to update moVement of entity, also updates direction
     public void updateMove(){
         updateDirection();
         //System.out.println(currentState);
@@ -37,6 +42,10 @@ public class Living extends Entity{
     }
 
     public void setAttackingState(State s) {this.attackingState = s;}
+
+    public Animation<TextureRegion> getCurrentAnimation(){
+        return null;
+    }
 
     public void updateDirection() {
         // omni
@@ -64,6 +73,7 @@ public class Living extends Entity{
         else if(!movingRight && movingLeft) {
             changeDirection(State.WALKING_LEFT);
         }
+        // handle case where entity is not moving and must get previous direction to find which idle state to update to
         else if(!movingUp && !movingRight && !movingDown && !movingLeft && this.currentState.isType(State.State_Type.MOVING)){
             State previousDirection = this.currentState;
             switch(previousDirection){

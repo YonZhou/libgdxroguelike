@@ -1,6 +1,7 @@
 package Screens;
 
 import Animations.PlayerAnimations;
+import Entities.Enemy;
 import Entities.Entity;
 import Entities.Player;
 import Entities.State;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -34,13 +36,11 @@ public class GameScreen extends AbstractScreen{
     private mainGUI gui;
     private GameInput gameInput;
     private float deltaTime;
-    private PlayerAnimations test;
 
 
     public GameScreen(Game g){
         super(g);
         deltaTime = 0;
-        this.test = new PlayerAnimations();
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -89,6 +89,7 @@ public class GameScreen extends AbstractScreen{
         playerEntity.updateMove();
 
         updateCamera(playerEntity);
+        // this called first
         currentMap.render(cam);
 
         gui.sBatch.setProjectionMatrix(gui.stage.getCamera().combined);
@@ -99,9 +100,24 @@ public class GameScreen extends AbstractScreen{
         sBatch.begin();
         drawObjects();
         drawPlayer();
+        updateEnemies();
         //sBatch.draw(test.getWalking_down_animation().getKeyFrame(deltaTime,true),0,0);
         sBatch.end();
 
+    }
+
+    private void updateEnemies() {
+        // draw each enemy onto the screen, maybe check if they're within bounds of the screen first
+        // also need to update enemy locations
+        for(Enemy e : this.world.getCurrentLevel().getEnemies()) {
+            if(!isWithinScreen(e.getX(), e.getY())){
+                continue;
+            }
+            Animation<TextureRegion> eAnimation = e.getCurrentAnimation();
+            //Animation<TextureRegion> eAnimation = playerEntity.getCurrentAnimation();
+
+            sBatch.draw(eAnimation.getKeyFrame(deltaTime, true), e.getX(), e.getY(), e.getWidth(), e.getHeight());
+        }
     }
 
     // draws the player sprite along with healthbar
@@ -153,6 +169,10 @@ public class GameScreen extends AbstractScreen{
     private void updateCamera(Entity e){
         cam.position.set(e.getPosition().x, e.getPosition().y, 0);
         cam.update();
+    }
+
+    private boolean isWithinScreen(double x, double y){
+        return true;
     }
 
     @Override

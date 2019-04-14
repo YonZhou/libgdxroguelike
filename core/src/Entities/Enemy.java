@@ -1,10 +1,12 @@
 package Entities;
 
-import Animations.BaseAnimation;
+
+import Animations.LivingAnimation;
 
 public class Enemy extends Living{
-    private BaseAnimation animation;
+
     public Enemy(int x, int y) {
         super(x, y);
     }
+
 }

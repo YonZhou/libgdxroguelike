@@ -19,7 +19,8 @@ public class World {
 
     public Level generateNewBasicLevel() {
         this.currentLevel = new BasicLevel(sb) ;
-        this.player.setMap(currentLevel.getMap());
+        this.player.setLevel(currentLevel);
+        currentLevel.generateEnemies();
         return this.currentLevel;
     }
 
@@ -30,4 +31,6 @@ public class World {
     public gameMap getCurrentMap() {
         return this.currentLevel.getMap() ;
     }
+
+    public Level getCurrentLevel() { return this.currentLevel; }
 }
